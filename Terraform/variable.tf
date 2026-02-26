@@ -1,4 +1,4 @@
-variable "location" {
+lvariable "location" {
   default = "Central India"
 }
 
@@ -7,6 +7,5 @@ variable "admin_username" {
 }
 
 variable "admin_password" {
-  description = "VM admin password"
-  sensitive   = true
+  default = "Admin@123"
 }
