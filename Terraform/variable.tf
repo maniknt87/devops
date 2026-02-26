@@ -1,4 +1,4 @@
-lvariable "location" {
+variable "location" {
   default = "Central India"
 }
 
