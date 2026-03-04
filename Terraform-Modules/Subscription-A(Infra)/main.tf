@@ -78,6 +78,7 @@ resource "azurerm_public_ip" "linux_pip" {
   location            = azurerm_resource_group.rg.location
   resource_group_name = azurerm_resource_group.rg.name
   allocation_method   = "Static"
+  sku                 = "Standard"
 }
 
 resource "azurerm_public_ip" "windows_pip" {
@@ -85,6 +86,7 @@ resource "azurerm_public_ip" "windows_pip" {
   location            = azurerm_resource_group.rg.location
   resource_group_name = azurerm_resource_group.rg.name
   allocation_method   = "Static"
+  sku                 = "Standard"
 }
 
 # -----------------------------
