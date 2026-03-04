@@ -49,7 +49,7 @@ resource "azurerm_subnet" "bastion" {
   address_prefixes     = ["10.0.2.0/24"]
 }
 resource "azurerm_linux_virtual_machine" "linux_vm" {
-  count               = 2
+  count               = 1
   name                = "linux-vm-${count.index}"
   resource_group_name = azurerm_resource_group.rg.name
   location            = var.location
