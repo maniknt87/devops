@@ -64,9 +64,9 @@ resource "azurerm_linux_virtual_machine" "linux_vm" {
   ]
 
   admin_ssh_key {
-    username   = var.admin_username
-    public_key = file("~/.ssh/id_rsa.pub")
-  }
+  username   = var.admin_username
+  public_key = file("/var/lib/jenkins/.ssh/id_rsa.pub")
+}
 
   os_disk {
     caching              = "ReadWrite"
