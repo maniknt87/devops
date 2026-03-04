@@ -1,18 +1,21 @@
 ---
-- name: Configure web server
+- name: Configure Linux VM
   hosts: linux
   become: yes
 
   tasks:
 
-    - name: Install nginx
-      apt:
-        name: nginx
-        state: latest
-        update_cache: yes
+  - name: Update packages
+    apt:
+      update_cache: yes
 
-    - name: Ensure nginx running
-      service:
-        name: nginx
-        state: started
-        enabled: yes
+  - name: Install nginx
+    apt:
+      name: nginx
+      state: present
+
+  - name: Start nginx
+    service:
+      name: nginx
+      state: started
+      enabled: yes
