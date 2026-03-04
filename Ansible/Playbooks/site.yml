@@ -1,0 +1,9 @@
+---
+- hosts: linux
+  become: yes
+  roles:
+    - linux
+
+- hosts: windows
+  roles:
+    - windows

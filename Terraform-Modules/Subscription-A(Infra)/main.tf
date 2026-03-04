@@ -73,7 +73,27 @@ resource "azurerm_linux_virtual_machine" "linux_vm" {
     sku       = "22_04-lts"
     version   = "latest"
   }
+  custom_data = count.index == 0 ? base64encode(<<EOF
+#cloud-config
+package_update: true
+packages:
+  - software-properties-common
+  - python3
+  - python3-pip
+
+runcmd:
+  - apt-add-repository --yes --update ppa:ansible/ansible
+  - apt install -y ansible
+  - ansible --version
+  - usermod -aG sudo ${var.admin_username}
+  - mkdir -p /home/${var.admin_username}/.ssh
+  - ssh-keygen -t rsa -b 4096 -f /home/${var.admin_username}/.ssh/id_rsa -N ""
+  - chown -R ${var.admin_username}:${var.admin_username} /home/${var.admin_username}/.ssh
+EOF
+) : null
 }
+
+
 resource "azurerm_windows_virtual_machine" "windows_vm" {
   name                = "windows-vm"
   resource_group_name = azurerm_resource_group.rg.name
