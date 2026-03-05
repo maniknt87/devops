@@ -69,6 +69,11 @@ resource "azurerm_network_security_rule" "http" {
   network_security_group_name = azurerm_network_security_group.nsg.name
 }
 
+resource "azurerm_subnet_network_security_group_association" "subnet_nsg_assoc" {
+  subnet_id                 = azurerm_subnet.subnet.id
+  network_security_group_id = azurerm_network_security_group.nsg.id
+}
+
 # -----------------------------
 # Public IPs
 # -----------------------------
@@ -198,7 +203,7 @@ SETTINGS
   protected_settings = <<PROTECTED_SETTINGS
   {
     "fileUris": [
-      "https://https://github.com/maniknt87/devops/main/Terraform-Modules/Subscription-A(Infra)/winrm.ps1"
+      "https://raw.githubusercontent.com/maniknt87/devops/main/Terraform-Modules/Subscription-A(Infra)/winrm.ps1"
     ]
   }
 PROTECTED_SETTINGS
