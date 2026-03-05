@@ -182,3 +182,24 @@ resource "azurerm_windows_virtual_machine" "windows_vm" {
     version   = "latest"
   }
 }
+resource "azurerm_virtual_machine_extension" "enable_winrm" {
+  name                 = "enable-winrm"
+  virtual_machine_id   = azurerm_windows_virtual_machine.windows_vm.id
+  publisher            = "Microsoft.Compute"
+  type                 = "CustomScriptExtension"
+  type_handler_version = "1.10"
+
+  settings = <<SETTINGS
+  {
+    "commandToExecute": "powershell -ExecutionPolicy Unrestricted -File winrm.ps1"
+  }
+SETTINGS
+
+  protected_settings = <<PROTECTED_SETTINGS
+  {
+    "fileUris": [
+      "https://https://github.com/maniknt87/devops/main/Terraform-Modules/Subscription-A(Infra)/winrm.ps1"
+    ]
+  }
+PROTECTED_SETTINGS
+}
