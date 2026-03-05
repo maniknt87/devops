@@ -194,18 +194,12 @@ resource "azurerm_virtual_machine_extension" "enable_winrm" {
   type                 = "CustomScriptExtension"
   type_handler_version = "1.10"
 
-  settings = <<SETTINGS
-  {
-    "commandToExecute": "powershell -ExecutionPolicy Unrestricted -File winrm.ps1"
-  }
-SETTINGS
-
   protected_settings = <<PROTECTED_SETTINGS
-  {
-    "fileUris": [
-      "https://raw.githubusercontent.com/maniknt87/devops/main/Terraform-Modules/Subscription-A(Infra)/winrm.ps1"
-    ],
-     "commandToExecute": "powershell -ExecutionPolicy Bypass -File winrm.ps1"
-  }
+{
+  "fileUris": [
+    "https://raw.githubusercontent.com/maniknt87/devops/main/Terraform-Modules/Subscription-A(Infra)/winrm.ps1"
+  ],
+  "commandToExecute": "powershell -ExecutionPolicy Bypass -File winrm.ps1"
+}
 PROTECTED_SETTINGS
 }
