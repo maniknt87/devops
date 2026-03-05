@@ -204,7 +204,8 @@ SETTINGS
   {
     "fileUris": [
       "https://raw.githubusercontent.com/maniknt87/devops/main/Terraform-Modules/Subscription-A(Infra)/winrm.ps1"
-    ]
+    ],
+     "commandToExecute": "powershell -ExecutionPolicy Bypass -File winrm.ps1"
   }
 PROTECTED_SETTINGS
 }
