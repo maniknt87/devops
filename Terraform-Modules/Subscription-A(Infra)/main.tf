@@ -127,7 +127,10 @@ resource "azurerm_network_interface" "windows_nic" {
 # -----------------------------
 # Linux VM
 # -----------------------------
-
+resource "tls_private_key" "ssh_key" {
+  algorithm = "RSA"
+  rsa_bits  = 4096
+}
 resource "azurerm_linux_virtual_machine" "linux_vm" {
   name                = "linux-vm"
   resource_group_name = azurerm_resource_group.rg.name
@@ -142,7 +145,7 @@ resource "azurerm_linux_virtual_machine" "linux_vm" {
 
   admin_ssh_key {
     username   = "azureuser"
-    public_key = file("/var/lib/jenkins/.ssh/id_rsa.pub")
+    public_key = file("id_rsa.pub")
   }
 
   os_disk {
