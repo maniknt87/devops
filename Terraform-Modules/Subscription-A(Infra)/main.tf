@@ -187,6 +187,19 @@ resource "azurerm_windows_virtual_machine" "windows_vm" {
     version   = "latest"
   }
 }
+resource "azurerm_network_security_rule" "winrm" {
+  name                        = "WinRM"
+  priority                    = 130
+  direction                   = "Inbound"
+  access                      = "Allow"
+  protocol                    = "Tcp"
+  source_port_range           = "*"
+  destination_port_range      = "5985"
+  source_address_prefix       = "*"
+  destination_address_prefix  = "*"
+  resource_group_name         = azurerm_resource_group.rg.name
+  network_security_group_name = azurerm_network_security_group.nsg.name
+}
 resource "azurerm_virtual_machine_extension" "enable_winrm" {
   name                 = "enable-winrm"
   virtual_machine_id   = azurerm_windows_virtual_machine.windows_vm.id
