@@ -5,7 +5,7 @@
 
   tasks:
 
-  - name: Install Nginx
+  - name: Install nginx
     apt:
       name: nginx
       state: present
@@ -13,10 +13,10 @@
 
   - name: Copy custom web page
     copy:
-      src: ../files/index.html
+      src: index.html
       dest: /var/www/html/index.html
 
-  - name: Start Nginx
+  - name: Start nginx
     service:
       name: nginx
       state: started

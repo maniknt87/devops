@@ -9,7 +9,8 @@
       name: Web-Server
       state: present
       include_management_tools: yes
+
   - name: Copy custom IIS page
     win_copy:
-      src: ../files/iis.html
+      src: iis.html
       dest: C:\inetpub\wwwroot\iisstart.htm
