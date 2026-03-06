@@ -5,16 +5,18 @@
 
   tasks:
 
-  - name: Update packages
-    apt:
-      update_cache: yes
-
-  - name: Install nginx
+  - name: Install Nginx
     apt:
       name: nginx
       state: present
+      update_cache: yes
 
-  - name: Start nginx
+  - name: Copy custom web page
+    copy:
+      src: ../files/index.html
+      dest: /var/www/html/index.html
+
+  - name: Start Nginx
     service:
       name: nginx
       state: started
