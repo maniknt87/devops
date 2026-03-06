@@ -1,5 +1,5 @@
 resource "azurerm_resource_group" "aks_rg" {
-  name     = "aks-rg"
+  name     = "AKS"
   location = var.location
 }
 

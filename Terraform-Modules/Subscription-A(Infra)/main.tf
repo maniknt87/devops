@@ -1,5 +1,5 @@
 resource "azurerm_resource_group" "rg" {
-  name     = "devops-rg"
+  name     = "Infra"
   location = "East US"
 }
 
